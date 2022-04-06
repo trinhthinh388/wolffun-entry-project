@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/img/hs_logo.png" alt="Thetan Market" height="130"/>
+  <img src="./public/png/hs_logo.png" alt="Thetan Market" height="130"/>
 </p>
 
 <p align="center">
