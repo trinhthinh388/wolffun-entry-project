@@ -34,7 +34,12 @@ const defaultConfig = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -55,10 +60,5 @@ const defaultConfig = {
     new MiniCssExtractPlugin(),
   ],
 };
-
-/**
- * Jest
- */
-// defaultConfig.module.push({});
 
 module.exports = defaultConfig;
