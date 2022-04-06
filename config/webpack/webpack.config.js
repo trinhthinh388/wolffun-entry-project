@@ -12,6 +12,10 @@ const defaultConfig = {
     path: path.join(__dirname, '/dist'),
     filename: 'index.js',
   },
+  devServer: {
+    hot: true,
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -54,8 +58,8 @@ const defaultConfig = {
   plugins: [
     new HTMLWebPackPlugin({
       hash: true,
-      filename: 'index.html', //target html
-      template: 'index.html', //source html
+      filename: './index.html', //target html
+      template: './index.html', //source html
     }),
     new MiniCssExtractPlugin(),
   ],

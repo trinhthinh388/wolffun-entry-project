@@ -50,7 +50,12 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
 
     // Prettier
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
 
     // TypeScripts
     '@typescript-eslint/prefer-ts-expect-error': 'error',
