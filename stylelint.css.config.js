@@ -4,7 +4,14 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'include', 'use', 'function', 'return'],
+        ignoreAtRules: [
+          'tailwind',
+          'layer',
+          'include',
+          'use',
+          'function',
+          'return',
+        ],
       },
     ],
   },

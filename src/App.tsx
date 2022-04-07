@@ -7,11 +7,9 @@ type AppProps = {
 };
 
 const App: React.FC<AppProps> = ({ children }) => (
-  <React.StrictMode>
-    <SizeProvider>
-      <CommonLayout>{children}</CommonLayout>
-    </SizeProvider>
-  </React.StrictMode>
+  <SizeProvider>
+    <CommonLayout>{children}</CommonLayout>
+  </SizeProvider>
 );
 
 export default App;
