@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button';
 import styles from './styles/header.module.scss';
 
 export type HeaderProps = {
@@ -14,9 +15,9 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
       </a>
 
-      <button>
+      <Button>
         <span>Connect Wallet</span>
-      </button>
+      </Button>
     </header>
   );
 };

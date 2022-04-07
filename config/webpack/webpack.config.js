@@ -53,8 +53,7 @@ const defaultConfig = {
       {
         test: /\.css$/,
         use: [
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           'postcss-loader',
         ],

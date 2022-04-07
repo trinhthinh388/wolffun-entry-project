@@ -16,6 +16,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fontsource/oxanium": "^4.5.5",
     "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
