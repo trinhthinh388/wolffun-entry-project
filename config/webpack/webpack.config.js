@@ -15,6 +15,10 @@ const defaultConfig = {
   devServer: {
     hot: true,
     open: true,
+    historyApiFallback: true,
+    client: {
+      progress: true,
+    },
   },
   module: {
     rules: [
@@ -24,7 +28,17 @@ const defaultConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              require.resolve('babel-plugin-module-resolver'),
+              {
+                root: ['./src/'],
+              },
+            ],
           },
         },
       },

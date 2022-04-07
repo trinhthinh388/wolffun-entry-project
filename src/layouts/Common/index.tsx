@@ -1,11 +1,12 @@
 import React from 'react';
+import { Header } from '../../components';
 
 type CommonLayoutProps = {
   [key: string]: any;
 };
 
 const CommonLayout: React.FC<CommonLayoutProps> = () => {
-  return <div className="min-h-screen"></div>;
+  return <Header className="min-h-screen"></Header>;
 };
 
 export default CommonLayout;

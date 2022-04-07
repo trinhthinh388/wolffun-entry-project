@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack/webpack.config.js --port 3000",
+    "build": "cross-env NODE_ENV=production webpack",
     "prepare": "husky install",
     "lint:code": "eslint src --ext .js,.jsx,.ts,.tsx && stylelint --allow-empty-input \"src/**/*.(js|jsx|ts|tsx)\" && prettier src --check",
     "lint:css": "stylelint --config stylelint.css.config.js --allow-empty-input \"src/**/*.(css|scss)\"",
@@ -38,6 +39,7 @@
     "autoprefixer": "^10.4.4",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
+    "babel-plugin-module-resolver": "^4.1.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
