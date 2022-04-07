@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack/webpack.config.js --port 3000",
+    "build": "cross-env NODE_ENV=production webpack",
     "prepare": "husky install",
     "lint:code": "eslint src --ext .js,.jsx,.ts,.tsx && stylelint --allow-empty-input \"src/**/*.(js|jsx|ts|tsx)\" && prettier src --check",
     "lint:css": "stylelint --config stylelint.css.config.js --allow-empty-input \"src/**/*.(css|scss)\"",
@@ -15,8 +16,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -27,13 +30,16 @@
     "@babel/preset-typescript": "^7.16.7",
     "@types/babel__core": "^7.1.19",
     "@types/jest": "^27.4.1",
+    "@types/lodash": "^4.14.181",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
+    "autoprefixer": "^10.4.4",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
+    "babel-plugin-module-resolver": "^4.1.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
@@ -48,6 +54,7 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "mini-css-extract-plugin": "^2.6.0",
+    "postcss-loader": "^6.2.1",
     "prettier": "^2.6.2",
     "react-app-polyfill": "^3.0.0",
     "react-test-renderer": "^18.0.0",
@@ -58,6 +65,7 @@
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0",
+    "tailwindcss": "^3.0.23",
     "ts-jest": "^27.1.4",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.3",

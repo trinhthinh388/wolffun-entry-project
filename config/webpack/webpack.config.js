@@ -12,6 +12,14 @@ const defaultConfig = {
     path: path.join(__dirname, '/dist'),
     filename: 'index.js',
   },
+  devServer: {
+    hot: true,
+    open: true,
+    historyApiFallback: true,
+    client: {
+      progress: true,
+    },
+  },
   module: {
     rules: [
       {
@@ -20,7 +28,17 @@ const defaultConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              require.resolve('babel-plugin-module-resolver'),
+              {
+                root: ['./src/'],
+              },
+            ],
           },
         },
       },
@@ -34,7 +52,12 @@ const defaultConfig = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -49,16 +72,11 @@ const defaultConfig = {
   plugins: [
     new HTMLWebPackPlugin({
       hash: true,
-      filename: 'index.html', //target html
-      template: 'index.html', //source html
+      filename: './index.html', //target html
+      template: './index.html', //source html
     }),
     new MiniCssExtractPlugin(),
   ],
 };
-
-/**
- * Jest
- */
-// defaultConfig.module.push({});
 
 module.exports = defaultConfig;

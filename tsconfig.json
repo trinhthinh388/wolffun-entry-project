@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["dom", "esnext"],
     "strict": true,
     "sourceMap": true,
-    "target": "esnext"
+    "target": "esnext",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src"
   },
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
