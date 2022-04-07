@@ -20,6 +20,9 @@ const defaultConfig = {
       progress: true,
     },
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.scss', '.js', '.jsx'],
+  },
   module: {
     rules: [
       {
@@ -45,9 +48,6 @@ const defaultConfig = {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        resolve: {
-          extensions: ['.ts', '.tsx', '.js', '.json'],
-        },
         use: 'ts-loader',
       },
       {
@@ -57,6 +57,39 @@ const defaultConfig = {
           'style-loader',
           'css-loader',
           'postcss-loader',
+        ],
+      },
+      {
+        test: /\.module\.s(a|c)ss$/,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: !isProd,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: !isProd,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: !isProd,
+            },
+          },
         ],
       },
       {
@@ -75,7 +108,10 @@ const defaultConfig = {
       filename: './index.html', //target html
       template: './index.html', //source html
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: isProd ? '[name].[hash].css' : '[name].css',
+      chunkFilename: isProd ? '[id].[hash].css' : '[id].css',
+    }),
   ],
 };
 

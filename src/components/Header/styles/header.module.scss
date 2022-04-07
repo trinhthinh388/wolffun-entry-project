@@ -1,0 +1,23 @@
+.header {
+  background: #020205;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    flex-grow: 1;
+  }
+}
+
+.logo__container {
+  background: #5333ff;
+  width: 6.5rem;
+  padding-right: 0.625rem;
+
+  > img {
+    width: 3.25rem;
+    height: auto;
+    z-index: 1;
+  }
+}
