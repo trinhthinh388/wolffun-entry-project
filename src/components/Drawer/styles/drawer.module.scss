@@ -1,0 +1,11 @@
+.drawer {
+  &__backdrop {
+    background: rgba(19, 11, 33, 0.85);
+    backdrop-filter: blur(32px);
+    position: fixed;
+    top: 68px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}

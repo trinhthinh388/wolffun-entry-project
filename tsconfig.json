@@ -9,8 +9,7 @@
     "sourceMap": true,
     "target": "esnext",
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "src"
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

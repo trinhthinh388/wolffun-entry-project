@@ -6,7 +6,7 @@ type CommonLayoutProps = {
 };
 
 const CommonLayout: React.FC<CommonLayoutProps> = () => {
-  return <Header className="min-h-screen"></Header>;
+  return <Header></Header>;
 };
 
 export default CommonLayout;
