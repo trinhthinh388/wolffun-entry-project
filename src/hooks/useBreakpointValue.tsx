@@ -24,6 +24,8 @@ export default function useBreakpointValue<T>(
   }
 
   if (!obj[currentBp]) {
+    if (BP_WEIGHT[currentBp] > BP_WEIGHT[sortedKey[0] as Breakpoint])
+      return null;
     return obj[sortedKey[0] as Breakpoint] ?? null;
   }
 

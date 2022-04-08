@@ -92,6 +92,10 @@ const defaultConfig = {
         ],
       },
       {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
