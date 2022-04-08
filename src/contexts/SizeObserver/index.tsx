@@ -9,9 +9,9 @@ export type TSizeContext = {
 };
 
 const BREAKPOINT_VALUE: Record<Breakpoint, number> = {
-  mobile: 640,
-  tablet: 768,
-  desktop: 1024,
+  mobile: 768,
+  tablet: 1024,
+  desktop: 1440,
 };
 
 export const SizeContext = React.createContext<TSizeContext>({

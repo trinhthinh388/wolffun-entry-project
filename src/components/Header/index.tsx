@@ -1,8 +1,9 @@
 import React from 'react';
 import { useBreakpointValue } from '../../hooks';
 
-import Button from '../Button';
+// Components
 import MobileMenu from './components/MobileMenu';
+import DesktopMenu from './components/DesktopMenu';
 
 // Styles
 import styles from './styles/header.module.scss';
@@ -13,8 +14,8 @@ export type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = () => {
   const Menu = useBreakpointValue({
-    mobile: <MobileMenu />,
-    desktop: null,
+    tablet: <MobileMenu />,
+    desktop: <DesktopMenu />,
   });
 
   return (
@@ -26,10 +27,6 @@ const Header: React.FC<HeaderProps> = () => {
           </div>
         </a>
       </div>
-
-      <Button>
-        <span>Connect Wallet</span>
-      </Button>
       {Menu}
     </header>
   );

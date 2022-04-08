@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import Button from '../../Button';
 import Drawer from '../../Drawer';
 import DrawerContent from '../../Drawer/components/DrawerContent';
@@ -18,6 +19,11 @@ const MobileMenu: React.FC<MobileMenuProps> = () => {
 
   return (
     <>
+      <div className="flex flex-grow justify-end">
+        <Button>
+          <span>Connect Wallet</span>
+        </Button>
+      </div>
       <Button onClick={onMenuClick} icon={<BurgerMenu />} />
       <Drawer open={show}>
         <DrawerContent>THINHMEO</DrawerContent>
