@@ -1,4 +1,14 @@
-import React, { useMemo, Children, cloneElement } from 'react';
+import React, {
+  useMemo,
+  Children,
+  cloneElement,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { isNil } from 'lodash';
+import { useSpring, animated } from 'react-spring';
 import { mergeClassname } from '../../utils';
 
 // Components
@@ -10,14 +20,53 @@ import styles from './styles/tabs.module.scss';
 
 export type TabsProps = {
   activeTab?: string | number;
+  onTabChange?: (
+    idx: number | string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => any;
 };
 
 const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
   activeTab,
   className = '',
   children,
+  onTabChange = () => {},
   ...props
 }) => {
+  const navigation = useNavigate();
+  const tabRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Record<string, HTMLAnchorElement>>({});
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [indicatorAnim, animAPI] = useSpring(
+    {
+      width: 0,
+      left: 0,
+    },
+    []
+  );
+
+  const onTabClick = useCallback(
+    (idx: number | string, href: string) => () => {
+      if (!inputRef.current) return;
+      const changeEvent = new Event('change');
+      inputRef.current.value = (idx ?? '').toString();
+      inputRef.current.dispatchEvent(changeEvent);
+      navigation(href);
+    },
+    [navigation]
+  );
+
+  const onInputChange = useCallback(
+    (event: Event) => {
+      const e = event as unknown as React.ChangeEvent<HTMLInputElement>;
+      e.preventDefault();
+      const { value } = e.currentTarget;
+      onTabChange(value, e);
+    },
+    [onTabChange]
+  );
+
   // Group TabItem and TabContent into an HashMap.
   const TabsChilren = useMemo(() => {
     return Children.toArray(children).reduce(
@@ -29,11 +78,16 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
         child
       ) => {
         if ((child as React.ReactElement).type === TabItem) {
+          const { index, href } = (child as React.ReactElement<TabItemProps>)
+            .props;
           obj.items.push(
             cloneElement(child as React.ReactElement, {
-              isActive:
-                (child as React.ReactElement<TabItemProps>).props.index ===
-                activeTab,
+              isActive: index === activeTab,
+              onClick: onTabClick(index ?? '', href ?? ''),
+              href,
+              ref: (r: any) => {
+                itemRefs.current[index ?? ''] = r;
+              },
             })
           );
         }
@@ -47,10 +101,41 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
         contents: [],
       }
     );
-  }, [children]);
+  }, [activeTab, children, onTabClick]);
+
+  useEffect(() => {
+    if (isNil(activeTab) || isNil(tabRef.current)) return;
+    const { x: tabX } = tabRef.current.getBoundingClientRect();
+    const { width, x } = itemRefs.current[activeTab].getBoundingClientRect();
+
+    if (indicatorAnim.width.get() === 0) {
+      animAPI.set({ width, left: x - tabX });
+      return;
+    }
+    animAPI.start({ width, left: x - tabX });
+  }, [activeTab, animAPI, indicatorAnim.width]);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+    const inputEl = inputRef.current;
+    inputEl.addEventListener('change', onInputChange);
+    // eslint-disable-next-line consistent-return
+    return () => {
+      inputEl.removeEventListener('change', onInputChange);
+    };
+  }, [onInputChange]);
 
   return (
-    <div className={mergeClassname(styles.tabs, className)} {...props}>
+    <div
+      ref={tabRef}
+      className={mergeClassname(styles.tabs, className)}
+      {...props}
+    >
+      <input ref={inputRef} className="hidden" />
+      <animated.div
+        style={indicatorAnim}
+        className={styles['tabs__indicator']}
+      />
       {TabsChilren.items}
       {TabsChilren.contents}
     </div>
