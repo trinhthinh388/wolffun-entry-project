@@ -1,12 +1,18 @@
 import React from 'react';
-import { Header } from '../../components';
+import { Header, Footer } from '../../components';
 
 type CommonLayoutProps = {
   [key: string]: any;
 };
 
 const CommonLayout: React.FC<CommonLayoutProps> = () => {
-  return <Header></Header>;
+  return (
+    <>
+      <Header />
+      <div className="flex-grow" />
+      <Footer />
+    </>
+  );
 };
 
 export default CommonLayout;
