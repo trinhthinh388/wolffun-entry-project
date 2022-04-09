@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBreakpointValue } from '../../hooks';
+import { mergeClassname } from '../../utils';
 
 // Components
 import MobileMenu from './components/MobileMenu';
@@ -18,11 +19,14 @@ const Header: React.FC<HeaderProps> = () => {
     desktop: <DesktopMenu />,
   });
 
+  const logoClass = useBreakpointValue({
+    tablet: styles['header__logo--mobile'],
+  });
   return (
     <header id="header" className={styles.header}>
       <div className={styles.header__logo}>
         <a href="/">
-          <div className={styles.logo__container}>
+          <div className={mergeClassname(styles.logo__container, logoClass)}>
             <img alt="logo" src="/png/thetan_logo_V2.png" />
           </div>
         </a>
