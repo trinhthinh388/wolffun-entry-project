@@ -1,0 +1,114 @@
+.footer {
+  width: 100%;
+  background: #030320;
+  justify-self: end;
+  padding: 2rem 0 2rem 0;
+  font-size: 1rem;
+  line-height: 22.5px;
+  color: #bfbcd2;
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .logo__container {
+      height: 7.625rem;
+      margin-bottom: 0.5rem;
+      > img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .logo__desc {
+      font-size: 1rem;
+      line-height: 22.5px;
+      color: #bfbcd2;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex: 1;
+    .menu {
+      &__list {
+        width: 33%;
+        padding-left: 1rem;
+      }
+
+      &__item {
+        margin-bottom: 1.25rem;
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .social {
+      &__title {
+        font-size: 1.25rem;
+        font-weight: normal;
+        color: #fff;
+        display: block;
+        margin-bottom: 2rem;
+      }
+
+      &__buttons {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      &__button {
+        padding: 0;
+        clip-path: none;
+
+        &:not(:first-child) {
+          margin-left: 1.5rem;
+        }
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+
+  &__support {
+    display: flex;
+    .support {
+      &__section {
+        padding: 15px;
+      }
+
+      &__title {
+        font-size: 1rem;
+        line-height: 3;
+        color: #fff;
+      }
+
+      &__content {
+        font-size: 0.875rem;
+
+        > a {
+          line-height: 1.75;
+          color: #00a9ff;
+          text-decoration: underline;
+          text-underline-offset: 0.2rem;
+          margin: 0 0.25rem;
+        }
+      }
+
+      &__logo {
+        width: 13.5px;
+        height: 13.5px;
+        object-fit: contain;
+      }
+    }
+  }
+}
