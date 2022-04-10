@@ -5,11 +5,11 @@ type CommonLayoutProps = {
   [key: string]: any;
 };
 
-const CommonLayout: React.FC<CommonLayoutProps> = () => {
+const CommonLayout: React.FC<CommonLayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <div className="flex-grow" />
+      <div className="app__content flex-grow">{children}</div>
       <Footer />
     </>
   );

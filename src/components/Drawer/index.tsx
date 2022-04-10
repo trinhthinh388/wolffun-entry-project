@@ -1,4 +1,5 @@
 import React, { CSSProperties, Children, cloneElement, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { useSpring, animated } from 'react-spring';
 import { mergeClassname } from '../../utils';
 
@@ -35,7 +36,7 @@ const Drawer: React.FC<DrawerProps & React.HTMLAttributes<HTMLDivElement>> = ({
     [children, open]
   );
 
-  return (
+  return createPortal(
     <animated.div
       style={{
         ...backdropStyles,
@@ -53,7 +54,8 @@ const Drawer: React.FC<DrawerProps & React.HTMLAttributes<HTMLDivElement>> = ({
       >
         {Content}
       </div>
-    </animated.div>
+    </animated.div>,
+    document.getElementById('root') || document.createElement('div')
   );
 };
 

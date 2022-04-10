@@ -26,7 +26,7 @@ const MobileMenu: React.FC<MobileMenuProps> = () => {
       </div>
       <Button onClick={onMenuClick} icon={<BurgerMenu />} />
       <Drawer open={show}>
-        <DrawerContent>THINHMEO</DrawerContent>
+        <DrawerContent />
       </Drawer>
     </>
   );
