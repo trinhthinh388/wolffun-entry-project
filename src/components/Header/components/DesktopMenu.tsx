@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { useLocation } from 'react-router-dom';
 import { find } from 'lodash';
 
@@ -51,7 +51,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = () => {
 
   useEffect(() => {
     const currentTab = find(MENU, { href: pathname });
-    setActiveTab(currentTab?.id ?? 1);
+    startTransition(() => setActiveTab(currentTab?.id ?? 1));
   }, [pathname]);
 
   return (

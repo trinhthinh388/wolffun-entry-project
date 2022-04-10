@@ -1,0 +1,35 @@
+.filter {
+  background: #180a42;
+  width: 16.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  &__section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #322272;
+    padding: 1.25rem;
+  }
+
+  &__title {
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  &__clear {
+    color: #dc19ff;
+    cursor: pointer;
+  }
+
+  &__content {
+    color: #c9c5db;
+    font-size: 0.875rem;
+  }
+
+  &__btn {
+    margin-top: 1.275rem;
+    width: 100%;
+    background: #3b2a8b;
+  }
+}
