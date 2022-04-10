@@ -5,21 +5,24 @@ import React, {
   useRef,
   useEffect,
   useCallback,
+  Suspense,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isNil } from 'lodash';
+import { isNil, map } from 'lodash';
 import { useSpring, animated } from 'react-spring';
 import { mergeClassname } from '../../utils';
 
 // Components
-import TabContent from './components/TabContent';
+import TabContent, { TabContentProps } from './components/TabContent';
 import TabItem, { TabItemProps } from './components/TabItem';
+const LazyComponent = React.lazy(() => import('./components/LazyComponent'));
 
 // Styles
 import styles from './styles/tabs.module.scss';
 
 export type TabsProps = {
   activeTab?: string | number;
+  lazy?: boolean;
   indicatorProps?: React.HTMLAttributes<HTMLDivElement>;
   onTabChange?: (
     idx: number | string,
@@ -33,6 +36,7 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
   indicatorProps: { className: indicatorClass, ...otherIndicatorProps } = {},
   children,
   onTabChange = () => {},
+  lazy = true,
   ...props
 }) => {
   const navigation = useNavigate();
@@ -75,7 +79,7 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
       (
         obj: {
           items: Array<React.ReactElement>;
-          contents: Array<React.ReactElement>;
+          contents: Record<string, React.ReactElement>;
         },
         child
       ) => {
@@ -94,16 +98,24 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
           );
         }
         if ((child as React.ReactElement).type === TabContent) {
-          obj.contents.push(child as React.ReactElement);
+          const { index } = (child as React.ReactElement<TabContentProps>)
+            .props;
+          if (!isNil(index)) {
+            if (lazy)
+              obj.contents[index.toString()] = (
+                <LazyComponent key={index}>{child}</LazyComponent>
+              );
+            else obj.contents[index.toString()] = child as React.ReactElement;
+          }
         }
         return obj;
       },
       {
         items: [],
-        contents: [],
+        contents: {},
       }
     );
-  }, [activeTab, children, onTabClick]);
+  }, [activeTab, children, lazy, onTabClick]);
 
   useEffect(() => {
     if (isNil(activeTab) || isNil(tabRef.current)) return;
@@ -142,7 +154,11 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
         {...otherIndicatorProps}
       />
       {TabsChilren.items}
-      {TabsChilren.contents}
+      <Suspense fallback={null}>
+        {map(TabsChilren.contents, (content, index) => (
+          <>{activeTab === index && content}</>
+        ))}
+      </Suspense>
     </div>
   );
 };

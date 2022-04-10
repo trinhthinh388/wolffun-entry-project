@@ -12,6 +12,12 @@ export { default as DrawerContent } from './Drawer/components/DrawerContent';
 export type { DrawerProps } from './Drawer';
 export type { DrawerContentProps } from './Drawer/components/DrawerContent';
 
+export { default as FilterSection } from './FilterSection';
+export type { FilterSectionProps } from './FilterSection';
+
+export { default as Expansion } from './Expansion';
+export type { ExpansionProps } from './Expansion';
+
 export { default as Tabs } from './Tabs';
 export { default as TabContent } from './Tabs/components/TabContent';
 export { default as TabItem } from './Tabs/components/TabItem';

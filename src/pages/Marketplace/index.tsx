@@ -5,7 +5,8 @@ import HeroIcon from '../../../public/svg/hero_rarity.svg';
 import CosmeticIcon from '../../../public/svg/ic_marketplace_cosmetic.svg';
 
 // Components
-import { Tabs, TabItem as Tab } from '../../components';
+import { Tabs, TabItem as Tab, TabContent } from '../../components';
+import HeroesTab from './components/HeroesTab';
 
 // Styles
 import styles from './styles/marketplace.module.scss';
@@ -50,6 +51,10 @@ const MarketPlace: React.FC<MarketPlaceProps> = () => {
             </div>
           </Tab>
         ))}
+        <TabContent index="heroes">
+          <HeroesTab />
+        </TabContent>
+        {/* <TabContent index="cosmetics">THINHMEO Cosmetics</TabContent> */}
       </Tabs>
     </div>
   );

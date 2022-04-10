@@ -1,0 +1,22 @@
+.expansion {
+  width: 100%;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .header {
+      &__title {
+        color: #ffffff;
+        font-size: 1rem;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__content {
+    will-change: transform, opacity, height;
+    overflow: hidden;
+  }
+}
