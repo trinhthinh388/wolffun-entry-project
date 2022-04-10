@@ -4,6 +4,9 @@
   align-items: center;
   background: #020205;
   height: 68px;
+  position: sticky;
+  top: 0;
+  left: 0;
 
   &__logo {
     display: flex;

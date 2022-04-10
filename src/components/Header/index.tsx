@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useBreakpointValue } from '../../hooks';
 import { mergeClassname } from '../../utils';
 
@@ -22,6 +22,7 @@ const Header: React.FC<HeaderProps> = () => {
   const logoClass = useBreakpointValue({
     tablet: styles['header__logo--mobile'],
   });
+
   return (
     <header id="header" className={styles.header}>
       <div className={styles.header__logo}>
@@ -36,4 +37,4 @@ const Header: React.FC<HeaderProps> = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

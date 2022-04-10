@@ -20,6 +20,7 @@ import styles from './styles/tabs.module.scss';
 
 export type TabsProps = {
   activeTab?: string | number;
+  indicatorProps?: React.HTMLAttributes<HTMLDivElement>;
   onTabChange?: (
     idx: number | string,
     e: React.ChangeEvent<HTMLInputElement>
@@ -29,6 +30,7 @@ export type TabsProps = {
 const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
   activeTab,
   className = '',
+  indicatorProps: { className: indicatorClass, ...otherIndicatorProps } = {},
   children,
   onTabChange = () => {},
   ...props
@@ -106,7 +108,9 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
   useEffect(() => {
     if (isNil(activeTab) || isNil(tabRef.current)) return;
     const { x: tabX } = tabRef.current.getBoundingClientRect();
-    const { width, x } = itemRefs.current[activeTab].getBoundingClientRect();
+    const { width, x } = itemRefs.current[
+      activeTab
+    ]?.getBoundingClientRect() ?? { width: 0, x: 0 };
 
     if (indicatorAnim.width.get() === 0) {
       animAPI.set({ width, left: x - tabX });
@@ -134,7 +138,8 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
       <input ref={inputRef} className="hidden" />
       <animated.div
         style={indicatorAnim}
-        className={styles['tabs__indicator']}
+        className={mergeClassname(styles['tabs__indicator'], indicatorClass)}
+        {...otherIndicatorProps}
       />
       {TabsChilren.items}
       {TabsChilren.contents}

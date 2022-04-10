@@ -1,0 +1,32 @@
+.marketplace {
+  height: 100vh;
+  &__tabs {
+    height: 4.6875em;
+    position: sticky;
+    top: 68px;
+    left: 0;
+  }
+  .tabs {
+    &__indicator {
+      clip-path: none;
+      background: #795cf5;
+      box-shadow: none;
+      height: 0.3125rem;
+      bottom: 0;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+
+  .content {
+    &__icon {
+      margin-right: 0.625rem;
+    }
+  }
+}
