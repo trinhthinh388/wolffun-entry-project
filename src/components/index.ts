@@ -24,6 +24,9 @@ export type { CheckboxProps } from './Checkbox';
 export { default as Select } from './Select';
 export type { SelectProps } from './Select';
 
+export { default as HeroCard } from './HeroCard';
+export type { HeroCardProps } from './HeroCard';
+
 export { default as Tabs } from './Tabs';
 export { default as TabContent } from './Tabs/components/TabContent';
 export { default as TabItem } from './Tabs/components/TabItem';

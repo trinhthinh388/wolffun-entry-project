@@ -16,7 +16,7 @@ const MobileFilterPane: React.FC<
   MobileFilterProps & React.HTMLAttributes<HTMLDivElement>
 > = ({ children }) => {
   return (
-    <div className="flex">
+    <div className="flex flex-col">
       <div className="flex-1 flex justify-center flex-row my-[23.5px]">
         <Select
           defaultValue={'Cheapest Price per Remaining gTHC battles'}
