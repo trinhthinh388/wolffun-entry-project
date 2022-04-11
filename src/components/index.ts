@@ -18,6 +18,12 @@ export type { FilterSectionProps } from './FilterSection';
 export { default as Expansion } from './Expansion';
 export type { ExpansionProps } from './Expansion';
 
+export { default as Checkbox } from './Checkbox';
+export type { CheckboxProps } from './Checkbox';
+
+export { default as Select } from './Select';
+export type { SelectProps } from './Select';
+
 export { default as Tabs } from './Tabs';
 export { default as TabContent } from './Tabs/components/TabContent';
 export { default as TabItem } from './Tabs/components/TabItem';

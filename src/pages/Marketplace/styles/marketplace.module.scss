@@ -2,6 +2,22 @@
   height: 100vh;
   &__tabs {
     height: 4.6875em;
+    position: sticky;
+    top: 68px;
+    left: 0;
+    background: #0f0933;
+    z-index: 2;
+    border-bottom: 1px solid #322272;
+    width: 100vw;
+    margin-left: calc((100vw - 1024px) / -2);
+    padding-left: calc((100vw - 1024px) / 2);
+
+    @media screen and (min-width: 1440px) {
+      & {
+        margin-left: calc((100vw - 1440px) / -2);
+        padding-left: calc((100vw - 1440px) / 2);
+      }
+    }
   }
   .tabs {
     &__indicator {
