@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack/webpack.config.js --port 3000",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack/webpack.config.js",
     "prepare": "husky install",
     "lint:code": "eslint src --ext .js,.jsx,.ts,.tsx && stylelint --allow-empty-input \"src/**/*.(js|jsx|ts|tsx)\" && prettier src --check",
     "lint:css": "stylelint --config stylelint.css.config.js --allow-empty-input \"src/**/*.(css|scss)\"",
@@ -67,6 +67,7 @@
     "prettier": "^2.6.2",
     "react-app-polyfill": "^3.0.0",
     "react-test-renderer": "^18.0.0",
+    "rimraf": "^3.0.2",
     "sass": "^1.49.11",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
