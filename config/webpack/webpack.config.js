@@ -5,11 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 const defaultConfig = {
-  mode: isProd ? 'production' : 'development',
+  mode: 'development',
   devtool: isProd ? undefined : 'source-map',
   entry: './src/index.tsx',
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/../../dist'),
     filename: 'index.js',
   },
   devServer: {
@@ -69,6 +69,7 @@ const defaultConfig = {
               sourceMap: !isProd,
             },
           },
+          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
@@ -83,6 +84,7 @@ const defaultConfig = {
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
+          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
