@@ -1,16 +1,20 @@
 const path = require('path');
 const HTMLWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const defaultConfig = {
-  mode: 'development',
+  mode: isProd ? 'production' : 'development',
   devtool: isProd ? undefined : 'source-map',
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, '/../../dist'),
     filename: 'index.js',
+  },
+  optimization: {
+    usedExports: true,
   },
   devServer: {
     hot: true,
@@ -116,6 +120,9 @@ const defaultConfig = {
     new MiniCssExtractPlugin({
       filename: isProd ? '[name].[hash].css' : '[name].css',
       chunkFilename: isProd ? '[id].[hash].css' : '[id].css',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'public', to: '' }],
     }),
   ],
 };
