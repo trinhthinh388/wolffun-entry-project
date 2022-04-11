@@ -5,7 +5,9 @@
   "repository": "https://github.com/trinhthinh388/wolffun-entry-project",
   "author": "Thinh Trinh",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack/webpack.config.js --port 3000",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack/webpack.config.js",
