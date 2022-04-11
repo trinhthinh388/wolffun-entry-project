@@ -142,24 +142,26 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
   }, [onInputChange]);
 
   return (
-    <div
-      ref={tabRef}
-      className={mergeClassname(styles.tabs, className)}
-      {...props}
-    >
-      <input ref={inputRef} className="hidden" />
-      <animated.div
-        style={indicatorAnim}
-        className={mergeClassname(styles['tabs__indicator'], indicatorClass)}
-        {...otherIndicatorProps}
-      />
-      {TabsChilren.items}
+    <>
+      <div
+        ref={tabRef}
+        className={mergeClassname(styles.tabs, className)}
+        {...props}
+      >
+        <input ref={inputRef} className="hidden" />
+        <animated.div
+          style={indicatorAnim}
+          className={mergeClassname(styles['tabs__indicator'], indicatorClass)}
+          {...otherIndicatorProps}
+        />
+        {TabsChilren.items}
+      </div>
       <Suspense fallback={null}>
         {map(TabsChilren.contents, (content, index) => (
           <>{activeTab === index && content}</>
         ))}
       </Suspense>
-    </div>
+    </>
   );
 };
 

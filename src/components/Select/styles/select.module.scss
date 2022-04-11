@@ -1,0 +1,53 @@
+.select {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  max-width: 15.625rem;
+  height: 2.5rem;
+  clip-path: polygon(3% 0, 97% 0, 100% 25%, 97% 100%, 3% 100%, 0 75%);
+  background-color: #1e0e59;
+  font-size: 1.125em;
+  color: #ffffff;
+  cursor: pointer;
+  &__value {
+    flex: 1;
+    background: transparent;
+    pointer-events: none;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 1.125em;
+  }
+
+  &__icon {
+    margin-right: 1.125rem;
+    svg {
+      color: #00f0ff;
+    }
+  }
+
+  &__options {
+    will-change: transform, opacity;
+    transform-origin: top left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-width: 15.625rem;
+    background: #1e0e59;
+    margin-top: 0.5rem;
+
+    .options {
+      &__container {
+        font-size: 1.125em;
+        color: #ffffff;
+        padding: 0.5em 1.5em;
+        word-break: break-word;
+        &:hover {
+          background: #5336d0;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
