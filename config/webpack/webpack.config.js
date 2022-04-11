@@ -6,7 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 const defaultConfig = {
-  mode: isProd ? 'production' : 'development',
+  mode: !isProd ? 'development' : 'production',
   devtool: isProd ? undefined : 'source-map',
   entry: './src/index.tsx',
   output: {
