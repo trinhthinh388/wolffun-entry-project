@@ -1,5 +1,5 @@
 .marketplace {
-  height: 100vh;
+  padding-bottom: 3rem;
   &__tabs {
     height: 4.6875em;
     position: sticky;
@@ -9,13 +9,25 @@
     z-index: 4;
     border-bottom: 1px solid #322272;
     width: 100vw;
-    margin-left: calc((100vw - 1024px) / -2);
-    padding-left: calc((100vw - 1024px) / 2);
+
+    @media screen and (min-width: 768px) and (max-width: 1025px) {
+      & {
+        margin-left: calc((100vw - 768px + 30px) / -2);
+        padding-left: calc((100vw - 768px + 30px) / 2);
+      }
+    }
+
+    @media screen and (min-width: 1025px) and (max-width: 1440px) {
+      & {
+        margin-left: calc((100vw - 968px + 30px) / -2);
+        padding-left: calc((100vw - 968px + 30px) / 2);
+      }
+    }
 
     @media screen and (min-width: 1440px) {
       & {
-        margin-left: calc((100vw - 1440px) / -2);
-        padding-left: calc((100vw - 1440px) / 2);
+        margin-left: calc((100vw - 1440px + 30px) / -2);
+        padding-left: calc((100vw - 1440px + 30px) / 2);
       }
     }
   }
@@ -40,6 +52,18 @@
   .content {
     &__icon {
       margin-right: 0.625rem;
+    }
+  }
+
+  .loading__indicator {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 3rem;
+      height: auto;
     }
   }
 }

@@ -40,6 +40,15 @@
     width: 100%;
     z-index: 2;
     border-radius: 0 0 0.5rem 0.5rem;
+
+    &--common {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 45, 206, 0.46) 0%,
+        #0127aa 66.15%
+      );
+    }
+
     &--epic {
       background: linear-gradient(
         180deg,
@@ -47,13 +56,32 @@
         #45008a 66.15%
       );
     }
+
+    &--legendary {
+      background: linear-gradient(
+        180deg,
+        rgba(194, 94, 1, 0.25) 0%,
+        #c25e01 66.15%
+      );
+    }
     .info {
       &__container {
         margin: 1rem;
         border-left: 0.25rem solid;
 
+        &--common {
+          color: #00c2ff;
+          border-color: #00c2ff;
+        }
+
         &--epic {
+          color: #ff7bfa;
           border-color: #ff7bfa;
+        }
+
+        &--legendary {
+          color: #ffb800;
+          border-color: #ffb800;
         }
       }
 
@@ -65,7 +93,7 @@
           &__title {
             padding-top: 0.3rem;
             padding-left: 1rem;
-            color: #ff7bfa;
+            color: inherit;
             font-weight: 600;
             font-size: 0.75em;
             line-height: 1.33;

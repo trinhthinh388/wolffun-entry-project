@@ -15,7 +15,7 @@ const HeroCard: React.FC<
   HeroCardProps & React.HTMLAttributes<HTMLDivElement>
 > = ({ data, className, ...props }) => {
   return (
-    <Link to={`/hero?id=${data.id}`}>
+    <Link className="w-fit" to={`/hero?id=${data.id}`}>
       <div className={mergeClassname(styles['card'], className)} {...props}>
         <div className={styles['card__background']} />
         <div className={styles['card__image']}>

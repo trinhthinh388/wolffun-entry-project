@@ -88,6 +88,7 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
             .props;
           obj.items.push(
             cloneElement(child as React.ReactElement, {
+              key: 'tab-' + index,
               isActive: index === activeTab,
               onClick: onTabClick(index ?? '', href ?? ''),
               href,
@@ -103,9 +104,19 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
           if (!isNil(index)) {
             if (lazy)
               obj.contents[index.toString()] = (
-                <LazyComponent key={index}>{child}</LazyComponent>
+                <LazyComponent key={index}>
+                  {cloneElement(child as React.ReactElement, {
+                    key: 'lazy-' + index,
+                  })}
+                </LazyComponent>
               );
-            else obj.contents[index.toString()] = child as React.ReactElement;
+            else
+              obj.contents[index.toString()] = cloneElement(
+                child as React.ReactElement,
+                {
+                  key: 'content-' + index,
+                }
+              );
           }
         }
         return obj;
@@ -158,7 +169,9 @@ const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
       </div>
       <Suspense fallback={null}>
         {map(TabsChilren.contents, (content, index) => (
-          <>{activeTab === index && content}</>
+          <React.Fragment key={content.key}>
+            {activeTab === index && content}
+          </React.Fragment>
         ))}
       </Suspense>
     </>
