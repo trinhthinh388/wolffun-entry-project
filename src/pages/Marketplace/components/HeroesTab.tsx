@@ -12,7 +12,7 @@ const HeroesTab: React.FC<HeroesTabProps> = () => {
   const FilterSection = useBreakpointValue({
     tablet: (
       <MobileFilterPane>
-        <HeroList />
+        <HeroList data={[]} />
       </MobileFilterPane>
     ),
     desktop: (

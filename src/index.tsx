@@ -18,7 +18,7 @@ const rootEl = document.getElementById('root');
 const rootNode = createRoot(rootEl as any);
 
 rootNode.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <App />
+  // </React.StrictMode>
 );
